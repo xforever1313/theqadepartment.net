@@ -16,30 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-using System.Reflection;
 using Cake.Frosting;
 
-namespace DevOps
+namespace DevOps.Tasks
 {
-    internal class Program
+    [IsDependentOn( typeof( TasteTask ) )]
+    public sealed class Default : FrostingTask<BuildContext>
     {
-        static int Main( string[] args )
-        {
-            string exeDir = Path.GetDirectoryName( Assembly.GetExecutingAssembly().Location ) ?? string.Empty;
-            string repoRoot = Path.Combine(
-                exeDir, // app
-                "..", // Debug
-                "..", // Bin
-                "..", // DevOps
-                "..", // DevOpsSln
-                ".."  // Root
-            );
-
-            return new CakeHost()
-                .UseContext<BuildContext>()
-                .SetToolPath( ".cake" )
-                .UseWorkingDirectory( repoRoot )
-                .Run( args );
-        }
     }
 }

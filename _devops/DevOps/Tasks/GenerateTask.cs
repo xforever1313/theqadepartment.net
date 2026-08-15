@@ -16,30 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-using System.Reflection;
+using Cake.Common.IO;
 using Cake.Frosting;
 
-namespace DevOps
+namespace DevOps.Tasks
 {
-    internal class Program
+    [TaskName( "generate" )]
+    [TaskDescription( "Builds the site for publishing." )]
+    public sealed class GenerateTask : FrostingTask<BuildContext>
     {
-        static int Main( string[] args )
+        public override void Run( BuildContext context )
         {
-            string exeDir = Path.GetDirectoryName( Assembly.GetExecutingAssembly().Location ) ?? string.Empty;
-            string repoRoot = Path.Combine(
-                exeDir, // app
-                "..", // Debug
-                "..", // Bin
-                "..", // DevOps
-                "..", // DevOpsSln
-                ".."  // Root
-            );
-
-            return new CakeHost()
-                .UseContext<BuildContext>()
-                .SetToolPath( ".cake" )
-                .UseWorkingDirectory( repoRoot )
-                .Run( args );
+            context.EnsureDirectoryExists( context.SiteOutput );
+            context.CleanDirectory( context.SiteOutput );
+            context.RunPretzel( "bake", true );
         }
     }
 }
