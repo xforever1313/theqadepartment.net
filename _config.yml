@@ -1,0 +1,38 @@
+pretzel: 
+    engine: razor
+
+category_pages_layout: category
+tag_pages_layout: tag
+
+# Only really enable this so categories get cached.
+enable_subcategories: true
+
+# Site settings
+author: Seth Hendrick
+title: The QA Department
+description: "The chaotic life of working in Quality Assurance."
+url: https://theqadepartment.net
+urlnohttp: theqadepartment.net
+contact: cqo@theqadepartment.net
+
+github: https://github.com/xforever1313/theqadepartment.net
+githubissues: https://github.com/xforever1313/theqadepartment.net/issues
+
+exclude:
+ - .gitignore
+ - .git
+ - .gitmodules
+ - .tgitconfig
+ - .vs
+ - .vscode
+ - .cake
+ - build.cake
+ - tools
+ - README.md
+ - _devops
+ - _thumbnails
+ - _pretzel
+ - _gallerydata
+ - devops.bat
+ - devops.sh
+ - Readme.md
