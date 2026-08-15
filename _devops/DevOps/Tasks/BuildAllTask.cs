@@ -23,7 +23,7 @@ namespace DevOps.Tasks
     [TaskName( "build_all" )]
     [IsDependentOn( typeof( BuildPretzelTask ) )]
     [IsDependentOn( typeof( TasteTask ) )]
-    public sealed class BuildAllTask
+    public sealed class BuildAllTask : FrostingTask<BuildContext>
     {
     }
 }
