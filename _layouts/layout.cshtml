@@ -1,0 +1,62 @@
+@using System
+@using System.Collections.Generic
+@using System.Text
+@using Pretzel.Logic.Templating.Context
+@using Page = Pretzel.Logic.Templating.Context.Page
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta content="en-us" http-equiv="Content-Language" />
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    @{
+        if( Model.Page.Bag.ContainsKey( "tags" ) )
+        {
+            var tagBuilder = new StringBuilder();
+            var tags = Model.Page.Bag["tags"] as IEnumerable<string>;
+            foreach( string tag in tags ?? Array.Empty<string>() )
+            {
+                tagBuilder.Append( tag + "," );
+            }
+            if( tagBuilder.Length > 0 )
+            {
+                tagBuilder = tagBuilder.Remove( tagBuilder.Length - 1, 1 );
+                @:<meta name="keywords" content="the,QA,department,comic,quality,assurance,software,testing,humor,validation,@tagBuilder.ToString()" />
+            }
+        }
+
+        if( Model.Page.Bag.ContainsKey( "description" ) )
+        {
+            @:<meta name="description" content="@(Model.Page.Bag["description"])" />
+            @:<meta property="og:description" content="The QA Department: @(Model.Page.Bag["description"])" />
+        }
+
+        <meta property="og:title" content="The QA Department: @Model.Page.Title" />
+        <meta property="og:url" content="@(Model.Site.Config["url"])@Model.Page.Url" />
+        <meta property="og:site_name" content="@(Model.Site.Config["title"])" />
+        <meta name="twitter:card" content="summary_large_image">
+        <meta property="og:type" content="article" />
+
+        @if( Model.Page.Bag.ContainsKey( "comic" ) )
+        {
+            @:<meta property="og:image" content="@(Model.Site.Config["url"])/static/comics/@(Model.Page.Bag["comic"])" />
+            @:<meta property="og:image:type" content="image/png" />
+        }
+        else
+        {
+            <meta property="og:image" content="@(Model.Site.Config["url"])/static/img/logo.png" />
+            <meta name="twitter:image:alt" content="The QA Department Logo" />
+            <meta property="og:image:type" content="image/png" />
+        }
+
+        <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Blog Feed" />
+        <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Blog Feed" />
+        <link rel="shortcut icon" href="/static/img/favicon.ico" />
+
+        <title>@Model.Title</title>
+    }
+</head>
+<body>
+    @Raw( Model.Content )
+</body>
