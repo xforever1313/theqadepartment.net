@@ -1,5 +1,5 @@
-﻿//
-// The QA Department Web Comic DevOps - Build Tools.
+//
+// The QA Department Website Plugin - Extensions to Pretzel.
 // Copyright (C) 2026 Seth Hendrick
 // 
 // This program is free software: you can redistribute it and/or modify
@@ -16,15 +16,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-using Cake.Frosting;
+using System.Composition;
+using Markdig;
+using Pretzel.Logic.Extensibility;
+using Pretzel.SethExtensions;
 
-namespace DevOps.Tasks
+namespace SitePlugin
 {
-    [TaskName( "build_all" )]
-    [IsDependentOn( typeof( BuildPretzelTask ) )]
-    [IsDependentOn( typeof( BuildPluginTask ) )]
-    [IsDependentOn( typeof( TasteTask ) )]
-    public sealed class BuildAllTask : FrostingTask<BuildContext>
+    [Export( typeof( ILightweightMarkupEngine ) )]
+    public sealed class QaMarkdownEngine : ILightweightMarkupEngine
     {
+        // ---------------- Methods ----------------
+
+        public string Convert( string source )
+        {
+            var pipeline = new MarkdownPipelineBuilder()
+                .UseAdvancedExtensions()
+                .Use<SethUrlMarkdownExtension>()
+                .Build();
+
+            return Markdown.ToHtml( source, pipeline );
+        }
     }
 }

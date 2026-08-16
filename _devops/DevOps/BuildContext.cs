@@ -22,6 +22,7 @@ using Cake.Common.IO;
 using Cake.Common.Tools.DotNet;
 using Cake.Common.Tools.DotNet.Build;
 using Cake.Common.Tools.DotNet.MSBuild;
+using Cake.Common.Tools.DotNet.Publish;
 using Cake.Core;
 using Cake.Core.IO;
 using Cake.Frosting;
@@ -46,9 +47,13 @@ namespace DevOps
 
             this.PostsDir = this.RepoRoot.Combine( "_posts" );
 
+            this.SitePluginDir = this.RepoRoot.Combine( "_siteplugin" );
+            this.SitePluginCsProj = this.SitePluginDir.CombineWithFilePath( "SitePlugin/SitePlugin.csproj" );
+
             this.PluginsDir = this.RepoRoot.Combine( "_plugins" );
             this.CategoryPluginOutput = this.PluginsDir.CombineWithFilePath( "Pretzel.Categories.dll" );
             this.SethExtensionsPluginOutput = this.PluginsDir.CombineWithFilePath( "Pretzel.SethExtensions.dll" );
+            this.QaDeptSitePluginOutput = this.PluginsDir.CombineWithFilePath( "SitePlugin.dll" );
 
             this.SiteOutput = this.RepoRoot.Combine( "_site" );
         }
@@ -65,11 +70,17 @@ namespace DevOps
 
         public DirectoryPath PostsDir { get; }
 
+        public DirectoryPath SitePluginDir { get; }
+
+        public FilePath SitePluginCsProj { get; }
+
         public DirectoryPath PluginsDir { get; }
 
         public FilePath CategoryPluginOutput { get; }
 
         public FilePath SethExtensionsPluginOutput { get; }
+
+        public FilePath QaDeptSitePluginOutput { get; }
 
         public DirectoryPath SiteOutput { get; }
 
@@ -84,6 +95,14 @@ namespace DevOps
             )
             {
                 BuildPretzel();
+            }
+        }
+
+        public void CheckSitePluginDependency()
+        {
+            if( this.FileExists( this.QaDeptSitePluginOutput ) == false )
+            {
+                BuildPlugin();
             }
         }
 
@@ -136,9 +155,38 @@ namespace DevOps
             this.Information( "Building Pretzel... Done!" );
         }
 
+        public void BuildPlugin()
+        {
+            CheckPretzelDependency();
+
+            this.Information( "Building Plugin..." );
+
+            var settings = new DotNetPublishSettings
+            {
+                Configuration = "Debug",
+                NoBuild = false,
+                NoRestore = false
+            };
+
+            this.DotNetPublish( this.SitePluginCsProj.ToString(), settings );
+
+            this.EnsureDirectoryExists( this.PluginsDir );
+            {
+                FilePathCollection files = this.GetFiles(
+                    this.SitePluginDir.CombineWithFilePath(
+                        $"SitePlugin/bin/Debug/{dotnetVersion}/publish/SitePlugin.*"
+                    ).ToString()
+                );
+                this.CopyFiles( files, this.PluginsDir );
+            }
+
+            this.Information( "Building Plugin... Done!" );
+        }
+
         public void RunPretzel( string argument, bool abortOnFail )
         {
             CheckPretzelDependency();
+            CheckSitePluginDependency();
  
             bool fail = false;
             string onStdOut( string line )

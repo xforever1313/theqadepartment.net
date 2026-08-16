@@ -1,4 +1,4 @@
-﻿//
+//
 // The QA Department Web Comic DevOps - Build Tools.
 // Copyright (C) 2026 Seth Hendrick
 // 
@@ -20,11 +20,13 @@ using Cake.Frosting;
 
 namespace DevOps.Tasks
 {
-    [TaskName( "build_all" )]
-    [IsDependentOn( typeof( BuildPretzelTask ) )]
-    [IsDependentOn( typeof( BuildPluginTask ) )]
-    [IsDependentOn( typeof( TasteTask ) )]
-    public sealed class BuildAllTask : FrostingTask<BuildContext>
+    [TaskName( "build_plugin" )]
+    [TaskDescription( "Builds the site plugin." )]
+    public sealed class BuildPluginTask : FrostingTask<BuildContext>
     {
+        public override void Run( BuildContext context )
+        {
+            context.BuildPlugin();
+        }
     }
 }

@@ -1,6 +1,8 @@
 ---
 layout: layout
 ---
+@using SitePlugin;
+
 @{
     // Any page that contains a comic.
 }
@@ -12,6 +14,15 @@ layout: layout
             <p>Posted on @Model.Page.Date.ToString( "D" )</p>
         </header>
         <div class="w3-padding w3-white w3-display-container">
+            <figure>
+                <img src="/static/comics/@Model.Page.Bag["comic"]" alt="@Model.Page.Bag["alttext"]" />
+            </figure>
+            <details>
+                <summary>View Transcript</summary>
+                <div>
+                    @Raw( Model.Page.GetPageTranscript() )
+                </div>
+            </details>
             @Raw( Model.Content )
         </div>
     </article>
