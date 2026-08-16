@@ -15,8 +15,14 @@ url: https://theqadepartment.net
 urlnohttp: theqadepartment.net
 contact: cqo@theqadepartment.net
 
+license: CC BY-NC-SA 4.0
+license_long: Attribution-NonCommercial-ShareAlike 4.0 International
+license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
 github: https://github.com/xforever1313/theqadepartment.net
 githubissues: https://github.com/xforever1313/theqadepartment.net/issues
+
+disqus_shortname: theqadepartment
 
 exclude:
  - .gitignore

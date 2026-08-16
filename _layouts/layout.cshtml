@@ -31,59 +31,97 @@
             @:<meta name="description" content="@(Model.Page.Bag["description"])" />
             @:<meta property="og:description" content="The QA Department: @(Model.Page.Bag["description"])" />
         }
-
-        <meta property="og:title" content="The QA Department: @Model.Page.Title" />
-        <meta property="og:url" content="@(Model.Site.Config["url"])@Model.Page.Url" />
-        <meta property="og:site_name" content="@(Model.Site.Config["title"])" />
-        <meta name="twitter:card" content="summary_large_image">
-        <meta property="og:type" content="article" />
-
-        @if( Model.Page.Bag.ContainsKey( "comic" ) )
-        {
-            @:<meta property="og:image" content="@(Model.Site.Config["url"])/static/comics/@(Model.Page.Bag["comic"])" />
-            @:<meta property="og:image:type" content="image/png" />
-        }
-        else
-        {
-            <meta property="og:image" content="@(Model.Site.Config["url"])/static/img/logo.png" />
-            <meta name="twitter:image:alt" content="The QA Department Logo" />
-            <meta property="og:image:type" content="image/png" />
-        }
-
-        <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Blog Feed" />
-        <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Blog Feed" />
-        <link rel="shortcut icon" href="/static/img/favicon.ico" />
-
-        <title>@Model.Title</title>
-
-        <!-- Favicon -->
-        <link rel="shortcut icon" href="/static/favicons/favicon.ico">
-        <link rel="apple-touch-icon" sizes="57x57" href="/static/favicon/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="/static/favicon/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="/static/favicon/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="/static/favicon/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="/static/favicon/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="/static/favicon/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="/static/favicon/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="/static/favicon/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="/static/favicon/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="/static/favicon/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
-        <link rel="manifest" href="/static/favicon/manifest.json">
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="/static/favicon/ms-icon-144x144.png">
-        <meta name="theme-color" content="#ffffff">
-
-        <!-- W3 Styles-->
-        <link href="/static/css/w3.css" rel="stylesheet" />
-        <link href="/static/css/w3-theme-orange.css" rel="stylesheet" />
-
-        <!-- FONTAWESOME STYLES-->
-        <link href="/static/css/font-awesome.min.css" rel="stylesheet" />
     }
+    <meta property="og:title" content="The QA Department: @Model.Page.Title" />
+    <meta property="og:url" content="@(Model.Site.Config["url"])@Model.Page.Url" />
+    <meta property="og:site_name" content="@(Model.Site.Config["title"])" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:type" content="article" />
+
+    @if( Model.Page.Bag.ContainsKey( "comic" ) )
+    {
+        @:<meta property="og:image" content="@(Model.Site.Config["url"])/static/comics/@(Model.Page.Bag["comic"])" />
+        @:<meta property="og:image:type" content="image/png" />
+    }
+    else
+    {
+        <meta property="og:image" content="@(Model.Site.Config["url"])/static/img/logo.png" />
+        <meta name="twitter:image:alt" content="The QA Department Logo" />
+        <meta property="og:image:type" content="image/png" />
+    }
+
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Blog Feed" />
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Blog Feed" />
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+
+    <title>@Model.Title</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/static/favicons/favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="/static/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/static/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/static/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/static/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/static/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/static/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/static/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/static/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/static/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/static/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/static/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/static/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- W3 Styles-->
+    <link href="/static/css/w3.css" rel="stylesheet" />
+    <link href="/static/css/w3-theme-orange.css" rel="stylesheet" />
+
+    <!-- FONTAWESOME STYLES-->
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 <body>
-    @Raw( Model.Content )
+    <!-- Nav Bar -->
+    @{
+        const string navAClass = "w3-bar-item w3-button w3-padding-16";
+        const string navADropDownClass = "w3-bar-item w3-button";
+    }
+    <div class="w3-container w3-theme" id="theTop">
+      <nav class="w3-bar">
+        <a href="/index.html" class="@navAClass"><i class="fa fa-home"></i> Home</a>
+      </nav>
+    </div>
+
+    <!-- Header -->
+    <header class="w3-container w3-theme w3-padding">
+        <div class="w3-center">
+            <h1 class="w3-xxxlarge w3-animate-bottom">@Model.Site.Config["title"]</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div id ="page-wrapper">
+        @Raw( Model.Content )
+    </div>
+
+    <!-- Footer -->
+    <footer class="w3-container w3-theme w3-padding-16">
+        <p>
+            <a href="/index.html">@Model.Site.Config["title"]</a> comics are licensed under 
+            <a rel="license" href="@Model.Site.Config["license_url"]">@Model.Site.Config["license_long"]</a>.
+        </p>
+        <p>
+            <a rel="license" href="@Model.Site.Config["license_url"]">
+                <img alt="Creative Commons License @Model.Site.Config["license"]" style="border-width:0" src="/static/img/license.png" />
+            </a>
+        </p>
+        <div style="position:relative;bottom:55px;" class="w3-tooltip w3-right">
+            <span class="w3-text w3-theme-light w3-padding">Go To Top</span>&nbsp;   
+            <a class="w3-text-white" href="#theTop"><span class="w3-xlarge">
+            <i class="fa fa-chevron-circle-up"></i></span></a>
+        </div>
+    </footer>
 </body>
