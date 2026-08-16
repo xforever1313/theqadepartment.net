@@ -7,3 +7,6 @@ exclude_from_navbar: true
 @Include( "htaccess.cstxt", Model, typeof( PageContext ) )
 
 ErrorDocument 404 /404/
+
+# Redirect ATProto to a proper file, not .well-known.
+Redirect 301 /.well-known/atproto-did /atproto/atproto-did.txt
