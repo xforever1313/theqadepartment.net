@@ -1,17 +1,13 @@
 ---
-layout: layout
+layout: pagebase
 ---
 @{
     // Any page that does not contain a comic.
 }
-<article id="w3-container">
-    <header class="w3-container w3-blue-grey">
-        <h1>@Model.Page.Title</h1>
-    </header>
-    <div class="w3-padding w3-white w3-display-container">
+<article id="maincontents">
+    <h1>@Model.Page.Title</h1>
+
+    <div id="pagecontents">
         @Raw( Model.Content )
     </div>
-    <footer class="w3-container w3-blue-grey">
-        <p>&nbsp;</p>
-    </footer>
 </article>

@@ -2,37 +2,69 @@
 layout: layout
 ---
 @using SitePlugin;
+@using Pretzel.Logic.Extensibility.Extensions;
+@using Pretzel.SethExtensions;
 
 @{
     // Any page that contains a comic.
 }
 
-<div id="w3-container">
-    <article>
-        <header class="w3-container w3-blue-grey">
-            <h1>@Model.Page.Title</h1>
-            <p>Posted on @Model.Page.Date.ToString( "D" )</p>
-        </header>
-        <div class="w3-padding w3-white w3-display-container">
-            <div id="comic">
-                <figure>
-                    <img src="/static/comics/@Model.Page.Bag["comic"]" alt="@Model.Page.Bag["alttext"]" />
-                </figure>
-                <details id="transcript">
-                    <summary>View Transcript</summary>
-                    <div>
-                        @Raw( Model.Page.GetPageTranscript() )
-                    </div>
-                </details>
+<article id="maincontents" class="blog-post">
+    <header>
+        <figure class="lead-image">
+            <img class="img-responsive" src="/static/comics/@Model.Page.Bag["comic"]" alt="@Model.Page.Bag["alttext"]" />
+        </figure>
+    </header>
+    <div class="body">
+        <div class="meta">
+            <i class="fa fa-calendar"> @Model.Page.Date.ToString( "MMM dd yyyy" )</i>
+        </div>
+        <details id="transcript">
+            <summary>View Transcript</summary>
+            <div>
+                @Raw( Model.Page.GetPageTranscript() )
             </div>
+        </details>
+        <div id="pagecontents">
             @Raw( Model.Content )
         </div>
-    </article>
+    </div>
+</article>
+
+<hr/>
+
+<nav id="posts-nav" style="display: flex; justify-content: space-around;">
+    <div>
+        @if( Model.Previous != null )
+        {
+            <a href="@Model.Previous.Url" title="Previous Post: @Model.Previous.Title">&larr; @Model.Previous.Title</a>
+        }
+    </div>
+    <div>
+        @if( Model.Next != null )
+        {
+            <a href="@Model.Next.Url" title="next Post: @Model.Next.Title">@Model.Next.Title &rarr; </a>
+        }
+    </div>
+</nav>
+
+@if( Model.Page.Tags.Any() )
+{
+    <aside id="tags" class="clearfix">
+        <h2>Tagged as:</h2>
+        <ul class="tags">
+        @foreach( string tag in Model.Page.Tags )
+        {
+            <li><a href="/tag/@SlugifyFilter.Slugify( tag )/">@tag</a></li>
+        }
+        </ul>
+    </aside>
+}
 
     @if( Model.Comments )
     {
-        <div class="w3-container w3-padding w3-white w3-display-container">
-            <h2>Comments</h2>
+        <h2>Comments</h2>
+        <aside id="comments" class="comments">
             <noscript>JavaScript is needed to load Comments.</noscript>
             <div id="disqus_thread"></div>
             <script>
@@ -54,35 +86,6 @@ layout: layout
             </script>
             <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
             <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-        </div>
+        </aside>
     }
-
-    <footer class="w3-container w3-blue-grey">
-        <p>
-            <strong>Tagged As:</strong>
-            @foreach( string tag in Model.Page.Tags )
-            {
-                foreach( var page in Model.Site.Pages )
-                {
-                    if( page.Bag.ContainsKey( "tag" ) )
-                    {
-                        if( tag.Equals( page.Bag["tag"] ) )
-                        {
-                            @:<a href="@(page.Url)">@(tag)</a>
-                        }
-                    }
-                }
-            }
-        </p>
-        <div>
-            @if( Model.Previous != null )
-            {
-                <p>&larr; <strong>Previous Post: </strong><a href="@Model.Previous.Url" title="Previous Post: @Model.Previous.Title">@Model.Previous.Title</a></p>
-            }
-            @if( Model.Next != null )
-            {
-                <p><strong>Next Post: </strong><a href="@Model.Next.Url" title="next Post: @Model.Next.Title">@Model.Next.Title</a> &rarr;</p>
-            }
-        </div>
-    </footer>
 </div>
