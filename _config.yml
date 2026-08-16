@@ -24,6 +24,11 @@ githubissues: https://github.com/xforever1313/theqadepartment.net/issues
 
 disqus_shortname: theqadepartment
 
+deviantart: ""
+bluesky_url: https://bsky.app/profile/theqadepartment.net
+telegram_url: https://t.me/qacomic
+mastondon_url: https://defcon.social/@theqadepartment
+
 exclude:
  - .gitignore
  - .git

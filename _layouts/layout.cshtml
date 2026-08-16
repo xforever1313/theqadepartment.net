@@ -76,55 +76,145 @@
     <meta name="msapplication-TileImage" content="/static/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
-    <!-- W3 Styles-->
-    <link href="/static/css/w3.css" rel="stylesheet" />
-    <link href="/static/css/w3-theme-orange.css" rel="stylesheet" />
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="/static/css/fa.fontawesome.min.css">
+    <link rel="stylesheet" href="/static/css/fa.brands.min.css">
+    <link rel="stylesheet" href="/static/css/fa.regular.min.css">
+    <link rel="stylesheet" href="/static/css/fa.solid.min.css">
+    <link rel="stylesheet" href="/static/css/fa.v5-font-face.min.css">
 
-    <!-- FONTAWESOME STYLES-->
-    <link href="/static/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
 
-    <!-- Our styles -->
-    <link href="/static/css/qadepo.css" rel="stylesheet" />
+    <!-- QA styles -->
+    <link rel="stylesheet" href="/static/css/style.css" id="theme-styles">
+    <link rel="stylesheet" href="/static/css/qadepo.css" id="qa-styles">
 </head>
 <body>
-    <!-- Nav Bar -->
-    @{
-        const string navAClass = "w3-bar-item w3-button w3-padding-16";
-        const string navADropDownClass = "w3-bar-item w3-button";
-    }
-    <div class="w3-container w3-theme" id="theTop">
-      <nav class="w3-bar">
-        <a href="/index.html" class="@navAClass"><i class="fa fa-home"></i> Home</a>
-      </nav>
-    </div>
+    <header>
+        <div class="widewrapper masthead">
+            <div class="container">
+                <a href="/" id="logo">
+                    <img src="/static/img/logo.jpg" alt="Bettadelic Logo" />
+                </a>
 
-    <!-- Header -->
-    <header class="w3-container w3-theme w3-padding">
-        <div class="w3-center">
-            <h1 class="w3-xxxlarge w3-animate-bottom">@Model.Site.Config["title"]</h1>
+                <div id="mobile-nav-toggle" class="pull-right">
+                    <a href="#" data-toggle="collapse" data-target=".clean-nav .navbar-collapse">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </div>
+
+                <nav class="pull-right clean-nav">
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav nav-pills navbar-nav">
+                            <li>
+                                <a href="/">Home</a>
+                            </li>
+                            <li>
+                                <a href="/about/">About</a>
+                            </li>
+                            <li>
+                                <a href="/tag/">Browse</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <div class="widewrapper subheader">
         </div>
     </header>
 
-    <!-- Main Content -->
-    <div id="page-wrapper" class="w3-center">
-        @Raw( Model.Content )
+    <div class="widewrapper main">
+        <div class="container">
+            @Raw( Model.Content )
+        </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="w3-container w3-theme w3-padding-16">
+    <hr>
+
+    <footer>
+        <div class="widewrapper footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 footer-widget" id="socials">
+                        <div><strong>Follow Us!</strong></div>
+                        <ul>
+                            <!--
+                            <li>
+                                <a href="@(Model.Site.Config["deviantart"])" target="_blank" rel="noopener noreferrer nofollow">
+                                    <i class="fa-brands fa-deviantart"></i> <strong>DeviantArt:</strong> bettadelic
+                                </a>
+                            </li>
+                            -->
+                            <li>
+                                <a href="@Model.Site.Config["bluesky_url"]" target="_blank" rel="noopener noreferrer nofollow">
+                                    <i class="fa-brands fa-bluesky"></i> <strong>Blue Sky:</strong> @@theqadepartment.net
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Model.Site.Config["telegram_url"]" target="_blank" rel="noopener noreferrer nofollow">
+                                    <i class="fa-brands fa-telegram"></i> <strong>Telegram:</strong> qacomic
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Model.Site.Config["mastondon_url"]" target="_blank" rel="noopener noreferrer nofollow">
+                                  <i class="fa-brands fa-mastodon"></i> <strong>Mastodon:</strong> @@theqadepartment@@defcon.social
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Model.Site.Config["github"]" target="_blank" rel="noopener noreferrer nofollow">
+                                    <i class="fa-brands fa-square-github"></i> <strong>GitHub:</strong> xforever1313
+                                </a>
+                            </li>
+                            <!--
+                            <li>
+                                <a href="https://web.libera.chat/?channel=#bettadelic" target="_blank" rel="noopener noreferrer nofollow">
+                                    <i class="fa-solid fa-message"></i> <strong>IRC: </strong> #bettadelic@@libera.chat
+                                </a>
+                            </li>
+                            -->
+                        </ul>
+                    </div>
+                    <div class="col-md-6 footer-widget">
+                        <ul>
+                            <li>
+                                <a href="/about/privacy/">Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a href="/about/credits/">Credits</a>
+                            </li>
+                            <li>
+                                <a href="/rss.xml">RSS Feed</a>
+                            </li>
+                            <li>
+                                <a href="/atom.xml">ATOM Feed</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="widewrapper">
+                <span>Website design by <a href="https://web.archive.org/web/20221007152249/https://binarytheme.com/bloggo-clean-personal-blog-html5-template-2/" target="_blank" rel="noopener noreferrer nofollow">Binary Theme</a></span> | 
+                <span>Page generated on @DateTime.UtcNow.ToString( "R" )</span>
+            </div>
+        </div>
+        <div class="widewrapper copyright">
         <p>
-            <a href="/index.html">@Model.Site.Config["title"]</a> comics are licensed under 
-            <a rel="license noopener noreferrer nofollow" target="_blank" href="@Model.Site.Config["license_url"]">@Model.Site.Config["license_long"]</a>.
+            <a href="/index.html">@Model.Site.Config["title"]</a> comics are licensed under a Creative Commons
+            <a rel="license noopener noreferrer nofollow" target="_blank" href="@Model.Site.Config["license_url"]">@Model.Site.Config["license_long"]</a> license.
         </p>
         <p>
             <a rel="license noopener noreferrer nofollow" href="@Model.Site.Config["license_url"]" target="_blank">
                 <img alt="Creative Commons License @Model.Site.Config["license"]" style="border-width:0" src="/static/img/license.png" />
             </a>
         </p>
-        <div style="position:relative;bottom:55px;" class="w3-tooltip w3-right">
-            <span class="w3-text w3-theme-light w3-padding">Go To Top</span>&nbsp;   
-            <a class="w3-text-white" href="#theTop"><span class="w3-xlarge">
-            <i class="fa fa-chevron-circle-up"></i></span></a>
+        <p>
+            Copyright &copy; @DateTime.Now.Year Seth Hendrick
+        </p>
         </div>
     </footer>
 </body>
