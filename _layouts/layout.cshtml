@@ -2,6 +2,7 @@
 @using System.Collections.Generic
 @using System.Text
 @using Pretzel.Logic.Templating.Context
+@using SitePlugin;
 @using Page = Pretzel.Logic.Templating.Context.Page
 
 <!DOCTYPE html>
@@ -123,7 +124,14 @@
         </div>
 
         <div class="widewrapper subheader">
-            <h2>@Model.Page.Title</h2>
+            @if( @Model.Page.IsComicPage() )
+            {
+                <h2>#@Model.Page.GetComicId() - @Model.Page.Title</h2>
+            }
+            else
+            {
+                <h2>@Model.Page.Title</h2>
+            }
         </div>
     </header>
 

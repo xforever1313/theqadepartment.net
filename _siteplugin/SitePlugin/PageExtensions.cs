@@ -16,13 +16,42 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+using System.Text.RegularExpressions;
 using Pretzel.Logic.Templating.Context;
 
 namespace SitePlugin
 {
     public static class PageExtensions
     {
+        // ---------------- Fields ----------------
+        
+        private static readonly Regex comicIdRegex = new Regex( 
+            @"^\d+-\d+-\d+-(?<comicId>\d+)",
+            RegexOptions.Compiled | RegexOptions.ExplicitCapture
+        );
+
         // ---------------- Methods ----------------
+
+        public static bool IsComicPage( this Page page )
+        {
+            return page.Bag.ContainsKey( "comic" );
+        }
+
+        public static int GetComicId( this Page page )
+        {
+            string fileName = Path.GetFileName( page.File );
+
+            Match match = comicIdRegex.Match( fileName );
+            if( match.Success == false )
+            {
+                throw new ArgumentException( 
+                    $"Could not find comic id in file name: {fileName}",
+                    nameof( page )
+                );
+            }
+
+            return int.Parse( match.Groups["comicId"].Value );
+        }
 
         public static string GetPageTranscript( this Page page )
         {
