@@ -67,25 +67,35 @@ layout: layout
         </div>
     </div>
     <div class="body">
-        <figure class="lead-image">
-            <img class="img-responsive" src="/static/comics/@Model.Page.Bag["comic"]" alt="@Model.Page.Bag["alttext"]" />
-        </figure>
-        <div class="meta">
-            <i class="fa fa-calendar"> @Model.Page.Date.ToString( "MMM dd yyyy" )</i>
-        </div>
-        <details id="transcript">
-            <summary>View Transcript</summary>
-            <div>
-                @Raw( Model.Page.GetPageTranscript() )
+        <div id="qadate" class="row">
+            <div class="col-md-12">
+                <i class="fa-solid fa-calendar"> @Model.Page.Date.ToString( "MMM dd yyyy" )</i>
             </div>
-        </details>
-        <div id="pagecontents">
-            @Raw( Model.Content )
+        </div>
+        <hr/>
+        <div class="row">
+            <figure class="lead-image col-md-12">
+                <img class="img-responsive center-block" src="/static/comics/@Model.Page.Bag["comic"]" alt="@Model.Page.Bag["alttext"]" />
+            </figure>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <details id="transcript">
+                    <summary>View Transcript</summary>
+                    <div>
+                        @Raw( Model.Page.GetPageTranscript() )
+                    </div>
+                </details>
+            </div>
+        </div>
+        <div id="pagecontents" class="row">
+            <div class="col-md-12">
+                @Raw( Model.Content )
+            </div>
         </div>
     </div>
 </article>
-
-<hr/>
 
 @if( Model.Page.Tags.Any() )
 {

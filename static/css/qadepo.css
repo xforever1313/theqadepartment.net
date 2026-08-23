@@ -67,3 +67,13 @@ nav.pull-right {
     color:darkred;
     text-decoration: none;
 }
+
+#transcript > summary {
+    display: list-item;
+    cursor: pointer;
+}
+
+#qadate {
+    text-align: center;
+    vertical-align: center;
+}
