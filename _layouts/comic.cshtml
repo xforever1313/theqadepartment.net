@@ -4,18 +4,72 @@ layout: layout
 @using SitePlugin;
 @using Pretzel.Logic.Extensibility.Extensions;
 @using Pretzel.SethExtensions;
+@using Page = Pretzel.Logic.Templating.Context.Page
 
 @{
     // Any page that contains a comic.
 }
 
+@{
+    Page first = Model.Site.TryGetFirstPost();
+    Page last = Model.Site.TryGetLastPost();
+}
+
 <article id="maincontents" class="blog-post">
-    <header>
+    <div class="row pager-controls col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
+        <div class="col-xs-3 text-left">
+            @if( first == null )
+            {
+                <i class="fa-solid fa-angles-left pager-disabled" title="First"></i>
+            }
+            else
+            {
+                <a href="@first.Url" title="First" class="pager-enabled">
+                    <i class="fa-solid fa-angles-left"></i>
+                </a>
+            }
+        </div>
+        <div class="col-xs-3 text-center">
+            @if( Model.Previous == null )
+            {
+                <i class="fa-solid fa-angle-left pager-disabled" title="Previous"></i>
+            }
+            else
+            {
+                <a href="@Model.Previous.Url" title="Previous" class="pager-enabled">
+                    <i class="fa-solid fa-angle-left"></i>
+                </a>
+            }
+        </div>
+        <div class="col-xs-3 text-center">
+            @if( Model.Next == null )
+            {
+                <i class="fa-solid fa-angle-right pager-disabled" title="Next"></i>
+            }
+            else
+            {
+                <a href="@Model.Previous.Url" title="Next" class="pager-enabled">
+                    <i class="fa-solid fa-angle-right"></i>
+                </a>
+            }
+        </div>
+        <div class="col-xs-3 text-right">
+            @if( last == null )
+            {
+                <i class="fa-solid fa-angles-right pager-disabled" title="Most Recent"></i>
+            }
+            else
+            {
+                <a href="@last.Url" title="Most Recent" class="pager-enabled">
+                    <i class="fa-solid fa-angles-right"></i>
+                </a>
+            }
+        </div>
+    </div>
+    <div class="body">
         <figure class="lead-image">
             <img class="img-responsive" src="/static/comics/@Model.Page.Bag["comic"]" alt="@Model.Page.Bag["alttext"]" />
         </figure>
-    </header>
-    <div class="body">
         <div class="meta">
             <i class="fa fa-calendar"> @Model.Page.Date.ToString( "MMM dd yyyy" )</i>
         </div>
@@ -32,21 +86,6 @@ layout: layout
 </article>
 
 <hr/>
-
-<nav id="posts-nav" style="display: flex; justify-content: space-around;">
-    <div>
-        @if( Model.Previous != null )
-        {
-            <a href="@Model.Previous.Url" title="Previous Post: @Model.Previous.Title">&larr; @Model.Previous.Title</a>
-        }
-    </div>
-    <div>
-        @if( Model.Next != null )
-        {
-            <a href="@Model.Next.Url" title="next Post: @Model.Next.Title">@Model.Next.Title &rarr; </a>
-        }
-    </div>
-</nav>
 
 @if( Model.Page.Tags.Any() )
 {

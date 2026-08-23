@@ -13,8 +13,8 @@ a {
 
 a:hover,
 a:focus {
+  color:darkred;
   text-decoration: none;
-  color: #5b6268;
 }
 
 h1 {
@@ -103,6 +103,14 @@ Font Awesome Icons
   color: #7b8690;
 }
 
+.widewrapper.footer a:hover {
+  color: darkred;
+}
+
+.widewrapper.footer a:focus {
+  color: darkred;
+}
+
 .widewrapper.footer h1,
 .widewrapper.footer h2,
 .widewrapper.footer h3,
@@ -144,12 +152,12 @@ Styles for the navigation, both mobile and desktop
 
 .clean-nav .nav-pills > li > a:hover,
 .clean-nav .nav-pills > li > a:focus {
-  color: #222;
+  color: darkred;
 }
 
 .clean-nav .nav-pills > li.dropdown.open.active > a:hover,
 .clean-nav .nav-pills > li.dropdown.open.active > a:focus {
-  color: #222;
+  color: darkred;
 }
 
 .clean-nav .nav-pills .open .dropdown-toggle {
@@ -160,6 +168,7 @@ Styles for the navigation, both mobile and desktop
 
 .clean-nav .nav-pills > .active > a:hover,
 .clean-nav .nav-pills > .active > a:focus {
+  color: darkred;
 }
 
 .clean-nav .nav-pills .dropdown-menu {
@@ -190,7 +199,7 @@ Styles for the navigation, both mobile and desktop
 }
 
 .clean-nav .dropdown-menu > li > a {
-  color: #f8f8f9;
+  color: darkred;
   line-height: 30px;
   white-space: nowrap;
 }
@@ -199,7 +208,7 @@ Styles for the navigation, both mobile and desktop
 .clean-nav .dropdown-menu > li > a:focus {
   background-color: rgba(255, 255, 255, 0.15);
   background-image: none;
-  color: #f8f8f9;
+  color: darkred;
   filter: none;
 }
 

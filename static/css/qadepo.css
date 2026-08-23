@@ -36,9 +36,34 @@ nav.pull-right {
 
 .clean-nav .nav-pills > li > a:hover,
 .clean-nav .nav-pills > li > a:focus {
-  color: rgb(194, 194, 194) !important;
+  color: darkred !important;
 }
 
 #socials li {
     list-style-type: none;
+}
+
+#qaTitleBar {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.pager-controls {
+    font-size: 32px;
+    margin-top: 0.1em;
+    margin-bottom: 1em;
+}
+
+.pager-disabled {
+    color: #cccccc;
+}
+
+.pager-enabled:visited, .pager-enabled {
+    color:black;
+}
+
+
+.pager-enabled:hover, .pager-enabled:focus{
+    color:darkred;
+    text-decoration: none;
 }

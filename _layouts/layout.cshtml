@@ -124,14 +124,16 @@
         </div>
 
         <div class="widewrapper subheader">
+            <div class="row" id="qaTitleBar">
             @if( @Model.Page.IsComicPage() )
             {
-                <h2>#@Model.Page.GetComicId() - @Model.Page.Title</h2>
+                <h2 class="col-sm-12">#@Model.Page.GetComicId() - @Model.Page.Title</h2>
             }
             else
             {
-                <h2>@Model.Page.Title</h2>
+                <h2 class="col-sm-12">@Model.Page.Title</h2>
             }
+            </div>
         </div>
     </header>
 
@@ -248,7 +250,7 @@
             </a>
         </p>
         <p>
-            Copyright &copy; @DateTime.Now.Year Seth Hendrick
+            Copyright &copy; @DateTime.Now.Year <a href="https://shendrick.net" target="_blank" rel="noopener noreferrer nofollow">Seth Hendrick</a>
         </p>
         </div>
     </footer>
