@@ -11,5 +11,5 @@ That URL was not found.  It may have gotten removed or moved somewhere else.
 You can try the following:
 
 * You can also type in the URL on the [Wayback Machine](https://web.archive.org/), and see if a previous page exists.
-* You can try [searching](/search.html) the site.
+* You can try [searching](/archive/) the site.
 * Otherwise, try returning [Home](/) and try again.

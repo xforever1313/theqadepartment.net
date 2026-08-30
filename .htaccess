@@ -1,12 +1,21 @@
 ---
 layout: nil
-exclude_from_navbar: true
 ---
-
 @using Pretzel.Logic.Templating.Context
+@using SitePlugin;
+@using Page = Pretzel.Logic.Templating.Context.Page
+@{
+    Page last = Model.Site.TryGetLastPost();
+}
 @Include( "htaccess.cstxt", Model, typeof( PageContext ) )
 
 ErrorDocument 404 /404/
 
 # Redirect ATProto to a proper file, not .well-known.
 Redirect 301 /.well-known/atproto-did /atproto/atproto-did.txt
+
+@if( last != null )
+{
+@:# Redirect / to the latest comic. The [L] means do not change the URL.
+@:RewriteRule ^$ @last.Url [L]
+}
