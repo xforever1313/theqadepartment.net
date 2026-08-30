@@ -10,4 +10,4 @@ characters: [beanie, glasses]
 comic: "0001-welcome_to_chaos.png"
 alttext: "A comic showing Beanie's chaotic first day in the QA department."
 ---
-Working in the QA department is many things, but it is never boring!
+Working in the QA department is many things, but boring isn't one of them!
