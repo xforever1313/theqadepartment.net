@@ -115,7 +115,7 @@
                                 <a href="/about/">About</a>
                             </li>
                             <li>
-                                <a href="/tag/">Browse</a>
+                                <a href="/tag/">Archive</a>
                             </li>
                         </ul>
                     </div>
@@ -128,6 +128,10 @@
             @if( @Model.Page.IsComicPage() )
             {
                 <h2 class="col-sm-12">#@Model.Page.GetComicId() - @Model.Page.Title</h2>
+            }
+            else if( @Model.Page.Layout == "tag" )
+            {
+                <h2 class="col-sm-12">Comics tagged as: @Model.Page.Title</h2>
             }
             else
             {

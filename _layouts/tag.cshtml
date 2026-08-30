@@ -1,32 +1,33 @@
 ---
-layout : layout
+layout : page
 ---
+
+@using SitePlugin;
 
 @{
     object tagName = Model.Page.Bag["tag"];
 }
 
-<article id="w3-container">
-    <header class="w3-container w3-blue-grey">
-        <h1>Comics tagged as: @tagName</h1>
-    </header>
-    <div class="w3-padding w3-white w3-display-container">
-        <ul>
-            @{
-                foreach( var cat in @Model.Site.Tags )
-                {
-                    if( cat.Name.Equals( tagName ) )
+    <div class="row">
+        <div class="col-md-12">
+            <ul>
+                @{
+                    foreach( var cat in @Model.Site.Tags )
                     {
-                        foreach( var post in cat.Posts )
+                        if( cat.Name.Equals( tagName ) )
                         {
-                            @:<li><a href="@post.Url">@post.Title</a> - @post.Bag["description"]</li>
+                            foreach( var post in cat.Posts )
+                            {
+                                @:<li><a href="@post.Url">#@post.GetComicId(): @post.Title</a> - @post.Bag["description"]</li>
+                            }
                         }
                     }
                 }
-            }
-        </ul>
+            </ul>
+        </div>
     </div>
-    <footer class="w3-container w3-blue-grey">
-        <p>&nbsp;</p>
-    </footer>
-</article>
+    <div class="row">
+        <div class="col-md-12">
+            <a href="/tag/">View all tags</a>
+        </div>
+    </div>
