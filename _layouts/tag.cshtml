@@ -8,26 +8,26 @@ layout : page
     object tagName = Model.Page.Bag["tag"];
 }
 
-    <div class="row">
-        <div class="col-md-12">
-            <ul>
-                @{
-                    foreach( var cat in @Model.Site.Tags )
+<div class="row">
+    <div class="col-md-12">
+        <ul>
+            @{
+                foreach( var cat in @Model.Site.Tags )
+                {
+                    if( cat.Name.Equals( tagName ) )
                     {
-                        if( cat.Name.Equals( tagName ) )
+                        foreach( var post in cat.Posts )
                         {
-                            foreach( var post in cat.Posts )
-                            {
-                                @:<li><a href="@post.Url">#@post.GetComicId(): @post.Title</a> - @post.Bag["description"]</li>
-                            }
+                            @:<li><a href="@post.Url">#@post.GetComicId(): @post.Title</a> - @post.Bag["description"]</li>
                         }
                     }
                 }
-            </ul>
-        </div>
+            }
+        </ul>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <a href="/tag/">View all tags</a>
-        </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <a href="/tag/">View all tags</a>
     </div>
+</div>
