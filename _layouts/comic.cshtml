@@ -83,8 +83,10 @@ layout: layout
             <div class="col-md-12">
                 <details id="transcript">
                     <summary>View Transcript</summary>
-                    <div>
-                        @Raw( Model.Page.GetPageTranscript() )
+                    <div id="transcript-blockquote">
+                        <blockquote>
+                            @Raw( Model.Page.GetPageTranscript() )
+                        </blockquote>
                     </div>
                 </details>
             </div>
