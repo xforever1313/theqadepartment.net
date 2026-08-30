@@ -1,0 +1,12 @@
+---
+layout: nil
+---
+@using Page = Pretzel.Logic.Templating.Context.Page
+@using SitePlugin
+@{
+    Page last = Model.Site.TryGetLastPost();
+}
+@if( ( last != null ) && last.Bag.ContainsKey( "comic" ) )
+{
+@:/static/comics/@last.Bag["comic"]
+}
