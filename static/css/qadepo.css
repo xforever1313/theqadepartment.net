@@ -6,38 +6,71 @@
     margin:7px;
 }
 
-/* Theme overrides */
+/* Start navbar */
 
-#mobile-nav-toggle .fa
-{
-    /* Fix the color of the hamburger menu icon */
-    color: rgb(91, 98, 104) !important;
+
+/* Hide the checkbox controller completely */
+.nav-toggle-input {
+  display: none !important;
 }
 
-.navbar-collapse {
-    /* Float the hamburger menu contents to the right
-       to match the icon */
-    float: right !important;
-    text-align: right !important;
-}
-
+/* Mobile-only configuration (Bootstrap v3 breakpoint) */
 @media (max-width: 767px) {
-    .clean-nav {
-        /* Make the nav menu not 100% so it fits
-           to the right of the logo */
-        width: initial !important;
-    }
+  
+  /* Make the wrapper stack properly on mobile */
+  .clean-nav {
+    float: none !important;
+    position: relative;
+    width: 100%;
+    display: block;
+  }
+
+  /* Force display the hamburger icon wrapper on mobile */
+  .nav-toggle-btn.navbar-toggle {
+    display: block;
+    float: right;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 10px;
+    background-color: transparent;
+    border: 1px solid #ccc; /* Gives it a default visible box boundary */
+  }
+  
+  /* Ensure individual icon-bars display inside the label */
+  .nav-toggle-btn .icon-bar {
+    background-color: #888; 
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+  }
+  .nav-toggle-btn .icon-bar + .icon-bar {
+    margin-top: 4px;
+  }
+
+  /* Force clear floats so the dropdown doesn't clip */
+  .clean-nav::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  /* Overrides Bootstrap's hidden states when checked */
+  .nav-toggle-input:checked ~ .collapse.navbar-collapse {
+    display: block !important;
+    height: auto !important;
+    clear: both;
+    width: 100%;
+  }
+  
+  /* Stack the navigation items vertically on small layouts */
+  .clean-nav .nav-pills > li {
+    float: none;
+    text-align: right;
+  }
 }
 
-nav.pull-right {
-    /* Forces the nav menu to the right */
-    float: right !important;
-}
-
-.clean-nav .nav-pills > li > a:hover,
-.clean-nav .nav-pills > li > a:focus {
-  color: darkred !important;
-}
+/* End navbar */
 
 #socials li {
     list-style-type: none;
